@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product,Integer> {
-    @Query(value = "SELECT s FROM Product s")
+    @Query(value = "SELECT * FROM Product", nativeQuery=true)
     public List<Product> getAllproducts();
 
 
@@ -29,8 +29,8 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Transactional
     @Query(
             value =
-                    "INSERT INTO Product (name,description,price,stock, category_id) values (?1,?2,?3,?4,?5)",
+                    "INSERT INTO Product (name,description,price,stock, category_id,image) values (?1,?2,?3,?4,?5,?6)",
             nativeQuery = true)
-    void addProduct(String name,String description,Integer price,Integer stock,Integer category_id);
+    void addProduct(String name,String description,Integer price,Integer stock,Integer category_id, String image);
 }
 

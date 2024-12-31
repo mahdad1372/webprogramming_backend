@@ -1,10 +1,7 @@
 package com.example.web_programming_project.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +31,10 @@ public class Product {
     private Timestamp created_at;
     @Column(name = "updated_at")
     private Timestamp updated_at;
+    @Column(name = "image")
+    private String image;
+    @Transient
+    private String base64Image;
     public int getCategory_id() {
         return category_id;
     }
@@ -86,5 +87,12 @@ public class Product {
     }
     public void setPrice(Integer price) {
         this.price = price;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

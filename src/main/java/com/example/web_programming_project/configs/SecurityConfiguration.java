@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                 .disable()
                 .authorizeHttpRequests()
                 // Public APIs that don't require authentication
-                .requestMatchers("/users/public-info", "/users/about", "/auth/**","/auth/login","/category/**","/cart/**")
+                .requestMatchers("/users/public-info", "/users/about", "/auth/**","/auth/login","/category/**","/cart/**","/getproducts","/images/**")
                 .permitAll()
                 // Protected APIs that require authentication
                 .requestMatchers("/users/me", "/users","/users/all_info")
