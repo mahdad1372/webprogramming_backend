@@ -16,20 +16,7 @@ public class Productservice {
     public List<Product> getallproducts(){
         return productRepository.getAllproducts();
     }
-//    public List<Product> getallproducts(){
-//        List<Product> products = productRepository.getAllproducts();
-//
-//        return products.stream().map(product -> {
-//            if (product.getImage() != null) {
-//                String fullImage = product.getImage();
-//                String truncatedImage = fullImage.length() > 20
-//                        ? fullImage.substring(0, 10) + "..." + fullImage.substring(fullImage.length() - 10)
-//                        : fullImage;
-//                product.setImage(truncatedImage);
-//            }
-//            return product;
-//        }).collect(Collectors.toList());
-//    }
+
 
     public List<Product> getProductById(Integer id){
         return productRepository.getProductsById(id);
@@ -42,7 +29,6 @@ public class Productservice {
     }
 
     public void addProduct(String name, String description, Integer price, Integer stock_quantity, Integer category_id, String image) throws IOException {
-//        byte[] compressedImage = ImageUtils.compressImage(image);
         productRepository.addProduct(name,description,price,stock_quantity, category_id,image);
     }
 }

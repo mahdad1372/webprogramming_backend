@@ -28,7 +28,7 @@ public interface CategoryRepository extends CrudRepository<Category, Integer> {
     @Transactional
     @Query(
             value =
-                    "INSERT INTO Category (name,description) values (?1,?2)",
+                    "INSERT INTO Category (name,description,image) values (?1,?2,?3)",
             nativeQuery = true)
-    void addcategory(String name,String description);
+    void addcategory(String name,String description,String image);
 }

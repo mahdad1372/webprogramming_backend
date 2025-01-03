@@ -24,7 +24,7 @@ public class Categoryservice {
         categoryRepository.updatecategorybyId(id,name);
     }
 
-    public void addCategory(String name,String description){
-        categoryRepository.addcategory(name,description);
+    public void addCategory(String name,String description, String image){
+        categoryRepository.addcategory(name,description,image);
     }
 }
