@@ -24,6 +24,8 @@ public interface CartRepository extends CrudRepository<Cart, Integer> {
 
     @Query(value="SELECT * FROM Cart a WHERE a.cart_id=:id", nativeQuery=true)
     List<Cart> getCartByCart_id(@Param("id") Integer id);
+    @Query(value="SELECT * FROM Cart a WHERE a.user_id=:id", nativeQuery=true)
+    List<Cart> getCartByUser_id(@Param("id") Integer id);
     @Modifying
     @Transactional
     @Query(

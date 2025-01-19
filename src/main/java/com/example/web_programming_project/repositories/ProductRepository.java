@@ -23,8 +23,10 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query(value = "UPDATE Product SET name=?2 WHERE product_id = ?1")
     public void updateproductById(Integer id,String name);
 
-    @Query(value="SELECT * FROM Products a WHERE a.product_id=?1", nativeQuery=true)
+    @Query(value="SELECT * FROM Product a WHERE a.product_id=?1", nativeQuery=true)
     List<Product> getProductsById(@Param("id") Integer id);
+    @Query(value="SELECT * FROM Product a WHERE a.category_id=?1", nativeQuery=true)
+    List<Product> getProductsByIdCategory(@Param("id") Integer id);
     @Modifying
     @Transactional
     @Query(

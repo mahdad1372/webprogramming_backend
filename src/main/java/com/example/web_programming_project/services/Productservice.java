@@ -1,6 +1,5 @@
 package com.example.web_programming_project.services;
 
-import com.example.web_programming_project.configs.ImageUtils;
 import com.example.web_programming_project.entities.Product;
 import com.example.web_programming_project.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,9 @@ public class Productservice {
 
     public List<Product> getProductById(Integer id){
         return productRepository.getProductsById(id);
+    }
+    public List<Product> getProductByCategoryId(Integer id){
+        return productRepository.getProductsByIdCategory(id);
     }
     public void deleteproductbyId(Integer id){
         productRepository.deleteProductsById(id);

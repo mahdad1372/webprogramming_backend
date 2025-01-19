@@ -1,6 +1,4 @@
 package com.example.web_programming_project.controllers;
-
-
 import com.example.web_programming_project.entities.Product;
 import com.example.web_programming_project.services.Productservice;
 import jakarta.annotation.PostConstruct;
@@ -8,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
 import java.util.List;
 @RestController
 public class ProductController {
@@ -42,6 +38,10 @@ public class ProductController {
     @DeleteMapping("/deleteproducts")
     public void deleteproduct(@RequestBody Product products) {
         productservice.deleteproductbyId(products.getProduct_id());
+    }
+    @GetMapping("/getproductbycategory/{id}")
+    public List<Product> getproductbycategory(@PathVariable("id") Integer id){
+        return productservice.getProductByCategoryId(id);
     }
     @GetMapping("/getproduct/{id}")
     public List<Product> getcategorybyId(@PathVariable("id") Integer id){

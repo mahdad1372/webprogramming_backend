@@ -37,4 +37,5 @@ public interface OrderItemRepository extends JpaRepository<OrderItem,Integer>  {
                     "INSERT INTO OrderItem (order_id,product_id,quantity,price) values (?1,?2,?3)",
             nativeQuery = true)
     void addOrderItem(Integer order_id,Integer product_id,Integer quantity,Integer price);
+
 }

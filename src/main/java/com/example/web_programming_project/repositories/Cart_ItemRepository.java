@@ -1,6 +1,9 @@
 package com.example.web_programming_project.repositories;
 
+import com.example.web_programming_project.dtos.CartItemProductDTO;
 import com.example.web_programming_project.entities.Cart_Item;
+import com.example.web_programming_project.entities.OrderItem;
+import com.example.web_programming_project.entities.Product;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +33,11 @@ public interface Cart_ItemRepository extends CrudRepository<Cart_Item, Integer> 
             value =
                     "INSERT INTO Cart_Item (cart_id,product_id,quantity) values (?1,?2,?3)",
             nativeQuery = true)
-    void addCartItem(Integer user_id);
+    void addCartItem(Integer cart_id,Integer product_id,Integer quantity);
+    @Modifying
+    @Transactional
+    @Query(value="SELECT ci.cart_item_id, c.cart_id, p.product_id, p.name, p.description, p.price, p.image, p.stock, ci.quantity " +
+            "FROM Cart AS c JOIN Cart_Item AS ci ON c.cart_id = ci.cart_id " +
+            "JOIN Product AS p ON ci.product_id = p.product_id WHERE c.user_id=?1", nativeQuery=true)
+    List<Object[]> getCart_ItemByUserId(@Param("id") Integer id);
 }

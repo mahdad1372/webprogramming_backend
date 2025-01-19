@@ -16,6 +16,9 @@ public class CartService {
     public List<Cart> getCartByCart_id(Integer id){
         return cartRepository.getCartByCart_id(id);
     }
+    public List<Cart> getCartByUser_id(Integer id){
+        return cartRepository.getCartByUser_id(id);
+    }
     public void deleteCartByCart_id(Integer id){
         cartRepository.deleteCartByCart_id(id);
     }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.security.Timestamp;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order,Integer> {
@@ -34,7 +35,7 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     @Transactional
     @Query(
             value =
-                    "INSERT INTO Orders (user_id,total_amount,status) values (?1,?2,?3)",
+                    "INSERT INTO `Order` (user_id,total_amount,status) values (?1,?2,?3)",
             nativeQuery = true)
-    void addOrder(Integer user_id,Integer total_amount,String status);
+    void addOrder(Integer user_id, Integer total_amount, String status);
 }

@@ -27,6 +27,10 @@ public class CartController {
     public List<Cart> getCartByCart_id(@PathVariable("id") Integer id){
         return cartService.getCartByCart_id(id);
     }
+    @GetMapping("/getcartbyuserid/{id}")
+    public List<Cart> getCartByUser_id(@PathVariable("id") Integer id){
+        return cartService.getCartByUser_id(id);
+    }
     @PostMapping("/addcart")
     public void addCart(@RequestBody Cart cart){
         cartService.addCart(cart.getUser_id());

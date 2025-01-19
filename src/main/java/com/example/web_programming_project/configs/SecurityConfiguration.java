@@ -1,6 +1,5 @@
 package com.example.web_programming_project.configs;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -33,12 +32,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
+                .cors() // Enable CORS
+                .and()
                 .authorizeHttpRequests()
                 // Public APIs that don't require authentication
-                .requestMatchers("/users/public-info", "/users/about", "/auth/**","/auth/login","/category/**","/cart/**","/getproducts","/images/**")
+                .requestMatchers("/users/public-info", "/users/about", "/auth/**", "/auth/login", "/category/**", "/cart/**", "/getproducts", "/images/**"
+                ,"/getproduct/**","/getproductbycategory/**")
                 .permitAll()
                 // Protected APIs that require authentication
-                .requestMatchers("/users/me", "/users","/users/all_info")
+                .requestMatchers("/users/me", "/users", "/users/all_info")
                 .authenticated()
                 // Default policy: all other endpoints require authentication
                 .anyRequest()
@@ -57,13 +59,15 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8005"));
-        configuration.setAllowedMethods(List.of("GET","POST"));
-        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
+        // Set allowed origins for CORS (React app URL)
+        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Update this to match your React app's URL
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow all necessary methods
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With")); // Allow essential headers
+        configuration.setAllowCredentials(true); // Allow cookies and Authorization header
 
+        // Apply CORS configuration to all endpoints
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**",configuration);
+        source.registerCorsConfiguration("/**", configuration);
 
         return source;
     }
