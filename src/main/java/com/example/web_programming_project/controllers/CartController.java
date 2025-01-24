@@ -15,7 +15,7 @@ public class CartController {
     public void updateCartByCart_id(@RequestBody Cart cart){
         cartService.updateCartByCart_id(cart.getCart_id(),cart.getUser_id());
     }
-    @GetMapping("/getall")
+    @GetMapping("/getcart")
     public List<Cart> getAllCarts(){
         return cartService.getAllCarts();
     }

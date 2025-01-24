@@ -27,7 +27,8 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private String password;
-
+    @Column(nullable = false)
+    private String role;
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;
@@ -39,6 +40,14 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPassword() {
@@ -79,7 +88,7 @@ public class User implements UserDetails {
         return this;
     }
 
-    public String getFullName() {
+    public String getfullName() {
         return fullName;
     }
 

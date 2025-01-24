@@ -4,6 +4,7 @@ import com.example.web_programming_project.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 @Service
 public class Orderservice {
@@ -21,11 +22,11 @@ public class Orderservice {
     public void updateStatusById(Integer id,String status){
         orderRepository.updateStatusById(id,status);
     }
-    public void updateTotalAmountById(Integer id ,Integer amount){
+    public void updateTotalAmountById(Integer id ,BigDecimal amount){
         orderRepository.updateTotalAmountById(id,amount);
     }
 
-    public void addOrder(Integer user_id,Integer total_amount,String status){
+    public void addOrder(Integer user_id, BigDecimal total_amount, String status){
         orderRepository.addOrder(user_id,total_amount,status);
     }
 }

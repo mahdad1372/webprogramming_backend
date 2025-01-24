@@ -17,25 +17,19 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     @Query(value = "SELECT * FROM Users" , nativeQuery = true)
     public List<User> getAllUsers();
-//
-//
-//    @Modifying
-//    @Transactional
-//    @Query(value = "DELETE FROM Users WHERE user_id = :id")
-//    public void deleteUsersByUser_id(Integer id);
-//    @Modifying
-//    @Transactional
-//    @Query(value = "UPDATE Users SET username=?2 WHERE user_id = ?1")
-//    public void updateUserById(Integer id,String username);
-
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Users WHERE id = :id", nativeQuery = true)
+    public void deleteUsersById(Integer id);
     @Query(value="SELECT * FROM Users a WHERE a.username=?1 AND a.email=?2", nativeQuery=true)
     List<User> fetchallfromcustomerswithName(String first_name,String email);
     @Modifying
     @Transactional
     @Query(
             value =
-                    "INSERT INTO Users (user_id,username,password, email,first_name,last_name) values (?1,?2,?3,?4,?5,?6)",
+                    "INSERT INTO Users (full_name,email,password,role) values (?1,?2,?3,?4)",
             nativeQuery = true)
-    void addUser(Integer user_id,String username,String password,String email,String first_name,String last_name);
+    void addUser(String fullName,String email,String password,String role);
+
 }
 

@@ -1,16 +1,15 @@
 package com.example.web_programming_project.controllers;
 
 
+import com.example.web_programming_project.entities.Order;
+import com.example.web_programming_project.entities.Review;
 import com.example.web_programming_project.entities.User;
 import com.example.web_programming_project.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +54,12 @@ public class UserController {
     public String getAboutInfo() {
         return "Welcome to the application! This is publicly available information.";
     }
-
+    @PostMapping("/adduser")
+    public void adduser(@RequestBody User users){
+        userService.adduser(users.getfullName(),users.getEmail(),users.getPassword(),users.getRole());
+    }
+    @DeleteMapping("/deleteuser")
+    public void deleteuser(@RequestBody User users) {
+        userService.deleteuserbyId(users.getId());
+    }
 }

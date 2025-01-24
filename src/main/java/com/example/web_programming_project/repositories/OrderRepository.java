@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.security.Timestamp;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE Order SET total_amount=?2 WHERE order_id = ?1",nativeQuery = true)
-    public void updateTotalAmountById(Integer id,Integer total_amount);
+    public void updateTotalAmountById(Integer id,BigDecimal total_amount);
 
     @Query(value="SELECT * FROM Orders a WHERE a.order_id=?1", nativeQuery=true)
     List<Order> getOrdersById(@Param("id") Integer id);
@@ -37,5 +38,5 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
             value =
                     "INSERT INTO `Order` (user_id,total_amount,status) values (?1,?2,?3)",
             nativeQuery = true)
-    void addOrder(Integer user_id, Integer total_amount, String status);
+    void addOrder(Integer user_id, BigDecimal total_amount, String status);
 }

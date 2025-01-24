@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
@@ -21,12 +22,10 @@ public class Order {
     private Integer order_id;
     @Column(name = "user_id")
     private Integer user_id;
-    @Column(name = "total_amount")
-    private Integer total_amount;
+    @Column(name = "total_amount", precision = 10, scale = 2)
+    private BigDecimal total_amount;
     @Column(name = "status")
     private String status;
-    @Column(name = "order_date")
-    private Timestamp order_date;
     @Column(name = "created_at")
     private Timestamp created_at;
     @Column(name = "updated_at")
@@ -40,7 +39,7 @@ public class Order {
         return user_id;
     }
 
-    public Integer getTotal_amount() {
+    public BigDecimal getTotal_amount() {
         return total_amount;
     }
 
